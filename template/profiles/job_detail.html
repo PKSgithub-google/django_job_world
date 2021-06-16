@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<br><br><br>
+  <p style="text-align:left" class="text-dark light-300"><strong>Designation: </strong>{{ job.designation }}</p>
+  <p style="text-align:left" class="text-dark light-300"><strong>Location: </strong>{{ job.location }}</p>
+  <p style="text-align:left" class="text-dark light-300"><strong>Company Name: </strong> <a href="{{ job.company.get_absolute_url }}">{{ job.company }}</a></p>
+  <p style="text-align:left" class="banner-footer text-dark light-300"><strong>Date of publishing: </strong> {{ job.date_loggedin }}</p>
+  <p style="text-align:left" class="banner-footer text-dark light-300"><strong>Description: </strong> {{ job.job_description }}</p>
+  <p style="text-align:left" class="banner-footer text-dark light-300"><strong>Experience required: </strong> {{ job.exp_required }} years</p>
+  <p style="text-align:left" class="banner-footer text-dark light-300"><strong>Type of Job: </strong> {{ job.job_type }}</p> 
+  <p style="text-align:left" class="banner-footer text-dark light-300"><strong>Salary: </strong> {{ job.salary }}$</p>
+ 
+  {% if user.is_authenticated %}
+  <p style="text-align:left" class="banner-footer light-300">
+    <a class="banner-button btn rounded-pill btn-outline-primary btn-lg px-4" href="{% url 'profiles:apply-job' job.id %}"> Apply Job</a>
+  </p>
+  {% else %}
+  <p style="text-align:left" class="banner-footer light-300 typo-space-line" > <strong>Note: </strong> Please
+    <a href="{% url 'userAccounts:user-registration' %}"> register</a> or
+    <a href="{% url 'login'%}?next={{request.path}}"> login </a> to Apply
+  </p>
+
+  {% endif %}
+  
+{% endblock %}

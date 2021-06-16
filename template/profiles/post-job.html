@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<br><br> <br>
+  <h2 class="h4 pb-lg-3 text-dark light-300">Post a job</h1>
+  
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mx-auto my-4 p-3">
+              <form action="" method="post">
+                {% csrf_token %}
+                <table class="table-primary">
+                {{ form.as_table }}
+                </table>
+                <br>
+                <input type="submit" value="Submit" class="btn px-4 btn-primary text-white">
+              </form>
+            </div>
+        </div>
+      </div>  
+   
+{% endblock %} 

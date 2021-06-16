@@ -1,0 +1,57 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block content %}
+
+<section style="background-image: url('{% static 'img/banner-bg-01.jpg' %}');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h1 class="text-white font-weight-bold">Please Log In</h1>
+        <div class="custom-breadcrumbs">
+        
+          <span class="text-white"><strong>Log In</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  {% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+  {% endif %}
+
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p class="banner-footer light-300">Your account doesn't have access to this page. To proceed,
+      please login with an account that has access.</p>
+    {% else %}
+      <p class="banner-footer text-dark light-300">Please login to see this page.</p>
+    {% endif %}
+  {% endif %}
+
+  <form method="POST" action="#" class="p-4 border rounded">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="row form-group">
+      <div class="col-md-12 mb-3 mb-md-0">
+        
+        <label class="text-primary" for="id_{{ field.name }}">{{ field.label }}</label>
+        <input type="{{ field.field.widget.input_type }}" class="form-control" name="{{ field.name }}"
+          id="id_{{ field.name }}" placeholder="{{ field.field.widget.attrs.placeholder }}">
+          <input type="hidden" name="next" value="{{ next }}" />
+      </div>
+    </div>
+
+    {% endfor %}
+    <br> <br>
+    <div class="row form-group">
+      <div class="col-md-12">
+        <input type="submit" value="Sign In" class="btn px-4 btn-primary text-white">
+      </div>
+    </div>
+  </form>
+
+  {# Assumes you setup the password_reset view in your URLconf #}
+  <p class="banner-footer light-300"><a href="{% url 'password_reset' %}">Forgot password?</a></p>
+
+{% endblock %}

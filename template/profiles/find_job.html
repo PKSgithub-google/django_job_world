@@ -1,0 +1,46 @@
+
+<section id="index_banner" class="banner-vertical-center-index container-fluid pt-5">  
+  {% extends "base_generic.html" %}
+  
+  {% load static %}
+  {% block content %}
+  <br><br>
+ 
+   
+  
+      <br><br>
+    
+      
+        <div >
+          <div class="container">
+              <div class="row align-items-center justify-content-center">
+                <div class="col-md-12">
+                      <div >
+                      <h3 class="banner-heading text-secondary mb-0 pb-3 mx-0 px-0 light-300">The Easiest Way To Find Your Dream Job.                                                        </h3>
+                      <br><br>
+                      </div>
+                      <form method="GET" action="{% url 'profiles:search_result' %}" class="search-jobs-form">
+                      {% include 'profiles/search.html' %}
+                      </form>
+                </div>
+              </div>
+          </div>
+            <a href="#next" class="scroll-button smoothscroll">
+              <span class=" icon-keyboard_arrow_down"></span>
+            </a>
+            <p class="banner-footer light-300"> {{ num_visits }} {{ num_visits|pluralize }}.</p>
+      </div>
+    
+  
+  </section>
+  
+  
+  
+
+  
+  
+  
+  
+  
+    
+  {% endblock %}

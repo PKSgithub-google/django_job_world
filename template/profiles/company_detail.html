@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<br> <br>
+  <h1 class="h4 pb-2 text-dark light-300">Company Name: {{ company.cname }}</h1>
+<br>  
+  <p style="text-align:left" class="banner-footer text-dark light-300"><strong>Company : </strong> {{ company.cdescription }}</p> 
+  <p style="text-align:left" class="banner-footer text-dark light-300"><strong>Contact Information: </strong> {{ company.contact }}</p> 
+  <p style="text-align:left" class="banner-footer text-dark light-300"><strong>Address: </strong> {{ company.caddress }}</p>
+  <p style="text-align:left" class="banner-footer text-dark light-300"><strong>Email: </strong> {{ company.email }}</p>
+
+  {% if user.is_authenticated %}
+  <p style="text-align:left" class="banner-footer light-300">
+    <a class="banner-button btn rounded-pill btn-outline-primary btn-lg px-4" href="{% url 'profiles:create-job' company.id %}">Post a Job</a>
+  </p>
+  {% else %}
+  <p style="text-align:left" class="banner-footer light-300 typo-space-line"> <strong>Note: </strong> Please
+    <a href="{% url 'userAccounts:company-registration' %}"> register</a> or
+  <a href="{% url 'login'%}?next={{request.path}}"> login </a> to Post a job.
+  </p>
+  {% endif %}
+{% endblock %}

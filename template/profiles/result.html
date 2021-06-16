@@ -1,0 +1,36 @@
+
+<section id="index_banner" class="banner-vertical-center-index container-fluid pt-5">
+{% extends "base_generic.html" %}
+{% load static %}
+{% block content %}
+
+
+
+
+
+  <div class="container">
+    <br><br>
+    <div class="row">
+      {% for job in job_list %}
+      <div class="col-6 col-md-6 col-lg-4 mb-4 mb-lg-5">
+        <div class="col-lg-2 col-12 text-light align-items-center">
+          <i class='display-1 bx bxs-box bx-lg'></i>
+        </div>
+        
+        <a href="{% url 'profiles:single-job' job.id %}" class="block__16443 min-h text-center d-block">
+          <span class="custom-icon mx-auto"><span class="icon-magnet d-block"></span></span>
+          <h4>{{ job.designation }}-{{job.company}} ({{ job.location }})</h4>
+          
+          <p>{{ job.description | safe | truncatechars:100}}</p>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+
+    
+   
+
+  </div>
+</section>
+
+{% endblock content %}

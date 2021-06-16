@@ -1,0 +1,31 @@
+
+<section id="index_banner" class="banner-vertical-center-index container-fluid pt-5">
+  {% extends "base_generic.html" %}
+  
+  {% block content %}
+  {% load static %}
+  
+    <div>
+        <div>
+            <div >
+              <br><br>
+                <h4 style="text-align:left" class="h4 text-secondary pb-lg-3 text-dark light-300"> List of Companies </h4>
+                  <br><br>
+                  {% if company_list %}
+                  <ul style="text-align:left" class="list-unstyled text-dark light-300">
+                    {% for company in company_list %}
+                      <li class="pb-2">
+                        <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a href="{{ company.get_absolute_url }}">{{ company.cname }}</a> 
+                      </li>
+                    {% endfor %}
+                  </ul>
+                  {% else %}
+                    <p style="text-align:left">There are no companies in the library. </p> 
+                  {% endif %} 
+                
+            </div>
+            
+          </div>
+      </div>
+    </section>
+  {% endblock %}

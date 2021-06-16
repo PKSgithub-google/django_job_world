@@ -1,0 +1,30 @@
+<section id="index_banner" class="banner-vertical-center-index container-fluid pt-5">
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% load static %}
+
+  <div class="container">
+      <div>
+          <div >
+            <br><br>
+              <h4 style="text-align:left" class="h4 text-secondary pb-lg-3 text-dark light-300"> Job List </h4>
+                <br><br>
+                {% if job_list %}
+                <ul style="text-align:left" class="list-unstyled text-dark light-300">
+                  {% for job in job_list %}
+                    <li class="pb-2">
+                      <i class='bx-fw bx bxs-chevron-right bx-xs'></i><a href="{{ job.get_absolute_url }}">{{ job.designation }}</a> -{{ job.location }}
+                    </li>
+                  {% endfor %}
+                </ul>
+                {% else %}
+                  <p style="text-align:left">There are no jobs </p> 
+                {% endif %} 
+              
+          </div>
+          
+        </div>
+    </div>
+  </section>
+{% endblock %}
